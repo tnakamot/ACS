@@ -1,0 +1,17 @@
+#ifndef _HOLADEMO_IDL_
+#define _HOLADEMO_IDL_
+#include <acscomponent.idl>
+#pragma prefix "alma"
+
+module tnakamoto
+{
+  interface HolaDemo : ACS::ACSComponent
+  {
+    string sayHola();
+
+    string sayHolaWithParameters(in string inString,
+				 inout double inoutDouble,
+				 out long outInt);
+  };
+};
+#endif

@@ -46,7 +46,7 @@ CLASSPATH := $(CLASSPATH):$(XERCES_JAR)
 # 
 # IDL Files and flags
 # 
-IDL_FILES = HelloDemo XmlComponent LampAccess LampCallback ErrorSystemComponent EventComponent
+IDL_FILES = HelloDemo XmlComponent LampAccess LampCallback ErrorSystemComponent EventComponent JBaciDemo
 IDL_TAO_FLAGS =
 USER_IDL =
 HelloDemoStubs_LIBS = acscomponentStubs
@@ -55,6 +55,7 @@ LampAccessStubs_LIBS = acscomponentStubs acserrStubs
 LampCallbackStubs_LIBS = acscomponentStubs acserrStubs LampAccessStubs
 ErrorSystemComponentStubs_LIBS = ErrorSystemExampleStubs acscomponentStubs
 EventComponentStubs_LIBS = acsexmplFridgeStubs ACSErrTypeCommonStubs acscomponentStubs
+JBaciDemoStubs_LIBS = acscomponentStubs
 
 ACSERRDEF = JContExmplErrTypeTest ErrorSystemExample
 
@@ -72,7 +73,8 @@ jcontexmplComp_DIRS = \
 	alma/demo/LampCallbackImpl \
 	alma/demo/XmlComponentImpl \
 	alma/demo/XmlOffShootImpl \
-	alma/acsexmplErrorComponent
+	alma/acsexmplErrorComponent \
+        alma/demo/JBaciDemoImpl
 jcontexmplComp_JLIBS = LampAccess EventComponent ErrorSystemComponent LampCallback XmlComponent
 
 

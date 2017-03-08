@@ -1,0 +1,20 @@
+#ifndef _MyTestComponent_idl_
+#define _MyTestComponent_idl_
+#ifndef _ACS_PREPROCESSED_
+#define _ACS_PREPROCESSED_
+#endif
+#include <acscommon.idl>
+#include <baci.idl>
+#include <enumpropMACRO.idl>
+
+#pragma prefix "alma"
+
+module TMCDB
+{
+  interface MyTestComponent : ACS::CharacteristicComponent
+  {
+    readonly attribute ACS::ROdouble doubleProp;
+  };
+};
+
+#endif

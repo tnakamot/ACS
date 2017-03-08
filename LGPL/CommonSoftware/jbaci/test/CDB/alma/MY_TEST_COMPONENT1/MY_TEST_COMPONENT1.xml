@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<MyTestComponent xmlns="urn:schemas-cosylab-com:MyTestComponent:1.0" xmlns:baci="urn:schemas-cosylab-com:BACI:1.0" xmlns:cdb="urn:schemas-cosylab-com:CDB:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<doubleProp default_timer_trig="1.0" description="double Prop!" units="deg" graph_min="0" graph_max="360" archive_min_int="0" archive_max_int="0" archive_delta_percent="10.0" />
+</MyTestComponent>

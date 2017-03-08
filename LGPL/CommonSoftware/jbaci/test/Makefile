@@ -148,7 +148,7 @@ PANELS_L =
 #
 # IDL Files and flags
 #
-IDL_FILES = testSimpleMasterComponent testSeqTestingComponent testPrimTestingComponent testjBaciEnumProp MCtestComponent
+IDL_FILES = testSimpleMasterComponent testSeqTestingComponent testPrimTestingComponent testjBaciEnumProp MCtestComponent MyTestComponent
 IDL_TAO_FLAGS =
 USER_IDL = 
 testSimpleMasterComponentStubs_LIBS = baciStubs

@@ -22,7 +22,8 @@ public class MCtestDevIONoIncremental<T> extends DataAccessSupport<T> implements
 
 	@Override
 	public boolean initializeValue() {
-		return true;
+//		return true;
+		return false;
 	}
 
 	@Override

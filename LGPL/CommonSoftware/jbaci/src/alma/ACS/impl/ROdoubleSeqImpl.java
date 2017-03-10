@@ -147,6 +147,9 @@ public class ROdoubleSeqImpl
 		MonitordoubleImpl monitorImpl = new MonitordoubleImpl(this, callback, descIn, startTime);
 		MonitordoublePOATie monitorTie = new MonitordoublePOATie(monitorImpl);
 
+		System.out.println("tnakamoto: ROdoubleSeqImpl:create_postponed_monitor 1");
+		System.err.println("tnakamoto: ROdoubleSeqImpl:create_postponed_monitor 2");
+
 		// register and activate		
 		return MonitordoubleHelper.narrow(this.registerMonitor(monitorImpl, monitorTie));
 	

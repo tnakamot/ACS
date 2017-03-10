@@ -134,12 +134,12 @@ public class MCtestPropertiesComponentImpl extends CharacteristicComponentImpl
 
 	//RO
 	private ROdouble m_doubleROProp_p;
-	private double m_doubleROVal = 0.0;
+	private double m_doubleROVal = 1230.0;
 	private long m_time1 = 134608945243381570L;
 	private DataAccess<Double> m_doubleRODevIO = new MCtestDevIONoIncremental<Double>(m_time1, m_doubleROVal);
 	
 	private ROfloat m_floatROProp_p;
-	private float m_floatROVal = 0.0F;
+	private float m_floatROVal = 5.0F;
 	private long m_time2 = 134608945243381570L;
 	private DataAccess<Float> m_floatRODevIO = new MCtestDevIONoIncremental<Float>(m_time2, m_floatROVal);
 	
@@ -287,6 +287,10 @@ public class MCtestPropertiesComponentImpl extends CharacteristicComponentImpl
 	@Override
 	public void initialize(ContainerServices containerServices) throws ComponentLifecycleException {
 		super.initialize(containerServices);
+
+		System.out.println("tnakamoto: MCtestPropertiesComponentImpl:initialize() (1)");
+		System.err.println("tnakamoto: MCtestPropertiesComponentImpl:initialize() (2)");
+
 		{
 			ROdoubleImpl impl = new ROdoubleImpl("doubleROProp", this, m_doubleRODevIO);
 			ROdoublePOATie tie = new ROdoublePOATie(impl);

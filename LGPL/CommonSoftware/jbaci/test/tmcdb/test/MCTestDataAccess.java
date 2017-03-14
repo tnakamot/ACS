@@ -19,7 +19,7 @@ public class MCTestDataAccess<T extends Number> extends DataAccessSupport<T> imp
 	@SuppressWarnings("unchecked")
 	@Override
 	public T get(CompletionHolder completionHolder) throws AcsJException {
-		timestamp += 10000000; //increment 1 deg
+		timestamp += 10000000; //increment 1 sec
 		if (value instanceof Double) {
 			value = (T)Double.valueOf(value.doubleValue() + 1);
 		} else if (value instanceof Float) {

@@ -15,8 +15,6 @@ import alma.ACS.RWlongPOATie;
 import alma.ACS.RWlongSeq;
 import alma.ACS.RWlongSeqHelper;
 import alma.ACS.RWlongSeqPOATie;
-import alma.ACS.doubleSeqHolder;
-import alma.ACS.longSeqHolder;
 import alma.ACS.impl.CharacteristicComponentImpl;
 import alma.ACS.impl.ROdoubleImpl;
 import alma.ACS.impl.ROdoubleSeqImpl;
@@ -35,10 +33,19 @@ public class MCtestComponentImpl extends CharacteristicComponentImpl implements
 	private ROdouble doubleProp;
 	private ROdoubleImpl doublePropImpl;
 	private RWlong longProp;
+	private RWlongImpl longPropImpl;
 	private RWlongSeq longSeqProp;
+	private RWlongSeqImpl longSeqPropImpl;
 	private ROdoubleSeq doubleSeqProp;
 	private ROdoubleSeqImpl doubleSeqPropImpl;
 	private ROpattern patternProp;
+	private ROpatternImpl patternPropImpl;
+
+	private static double   initValDouble  =  -2.0;
+	private static int      initValLong    =    15;
+	private static long     initValPattern = 0x23L;
+	private static int[]    initValLongSeq()   { return new int[25];    }
+	private static double[] initValDoubleSeq() { return new double[25]; }
 	
 	@Override
 	public void initialize(ContainerServices containerServices)
@@ -46,36 +53,34 @@ public class MCtestComponentImpl extends CharacteristicComponentImpl implements
 		super.initialize(containerServices);
 		
 		{
-			DataAccess<Double> doubleROPropDA = new MCTestDataAccess<Double>(-2.0, 134608945243381570L);
+			DataAccess<Double> doubleROPropDA = new MCTestDataAccess<Double>(initValDouble, 134608945243381570L);
 			doublePropImpl =  new ROdoubleImpl("doubleProp", this, doubleROPropDA);
 			ROdoublePOATie currentTie = new ROdoublePOATie(doublePropImpl);
 			doubleProp = ROdoubleHelper.narrow(this.registerProperty(doublePropImpl, currentTie));
 		}
 		{
-			DataAccess<Integer> longROPropDA = new MCTestDataAccess<Integer>(15, 134608945243381570L);
-			RWlongImpl currentImpl =  new RWlongImpl("longProp", this, longROPropDA);
-			RWlongPOATie currentTie = new RWlongPOATie(currentImpl);
-			longProp = RWlongHelper.narrow(this.registerProperty(currentImpl, currentTie));
+			DataAccess<Integer> longROPropDA = new MCTestDataAccess<Integer>(initValLong, 134608945243381570L);
+			longPropImpl =  new RWlongImpl("longProp", this, longROPropDA);
+			RWlongPOATie currentTie = new RWlongPOATie(longPropImpl);
+			longProp = RWlongHelper.narrow(this.registerProperty(longPropImpl, currentTie));
 		}
 		{
-			int[] int_array = new int[25];
-			DataAccess<int[]> longSeqROPropDA = new MCTestDataAccessSeq<int[]>(int_array, 134608945243381570L);
-			RWlongSeqImpl currentImpl =  new RWlongSeqImpl("longSeqProp", this, longSeqROPropDA);
-			RWlongSeqPOATie currentTie = new RWlongSeqPOATie(currentImpl);
-			longSeqProp = RWlongSeqHelper.narrow(this.registerProperty(currentImpl, currentTie));
+			DataAccess<int[]> longSeqROPropDA = new MCTestDataAccessSeq<int[]>(initValLongSeq(), 134608945243381570L);
+			longSeqPropImpl =  new RWlongSeqImpl("longSeqProp", this, longSeqROPropDA);
+			RWlongSeqPOATie currentTie = new RWlongSeqPOATie(longSeqPropImpl);
+			longSeqProp = RWlongSeqHelper.narrow(this.registerProperty(longSeqPropImpl, currentTie));
 		}
 		{
-			double[] double_array = new double[25];
-			DataAccess<double[]> doubleSeqROPropDA = new MCTestDataAccessSeq<double[]>(double_array, 134608945243381570L);
+			DataAccess<double[]> doubleSeqROPropDA = new MCTestDataAccessSeq<double[]>(initValDoubleSeq(), 134608945243381570L);
 			doubleSeqPropImpl =  new ROdoubleSeqImpl("doubleSeqProp", this, doubleSeqROPropDA);
 			ROdoubleSeqPOATie currentTie = new ROdoubleSeqPOATie(doubleSeqPropImpl);
 			doubleSeqProp = ROdoubleSeqHelper.narrow(this.registerProperty(doubleSeqPropImpl, currentTie));
 		}
 		{
-			DataAccess<Long> patternROPropDA = new MCTestDataAccess<Long>(0x23L, 134608945243381570L);
-			ROpatternImpl currentImpl =  new ROpatternImpl("patternProp", this, patternROPropDA);
-			ROpatternPOATie currentTie = new ROpatternPOATie(currentImpl);
-			patternProp = ROpatternHelper.narrow(this.registerProperty(currentImpl, currentTie));
+			DataAccess<Long> patternROPropDA = new MCTestDataAccess<Long>(initValPattern, 134608945243381570L);
+			patternPropImpl =  new ROpatternImpl("patternProp", this, patternROPropDA);
+			ROpatternPOATie currentTie = new ROpatternPOATie(patternPropImpl);
+			patternProp = ROpatternHelper.narrow(this.registerProperty(patternPropImpl, currentTie));
 		}
 		
 	}
@@ -108,12 +113,27 @@ public class MCtestComponentImpl extends CharacteristicComponentImpl implements
 	@Override
 	public void reset() {
 		try {
-			doublePropImpl.getDataAccess().set(-2.0, null);
+			doublePropImpl.getDataAccess().set(initValDouble, null);
 		} catch (AcsJException e) {
 			e.printStackTrace();
 		}
 		try {
-			doubleSeqPropImpl.getDataAccess().set(new doubleSeqHolder(new double[25]), null);
+			longPropImpl.getDataAccess().set(initValLong, null);
+		} catch (AcsJException e) {
+			e.printStackTrace();
+		}
+		try {
+			longSeqPropImpl.getDataAccess().set(initValLongSeq(), null);
+		} catch (AcsJException e) {
+			e.printStackTrace();
+		}
+		try {
+			doubleSeqPropImpl.getDataAccess().set(initValDoubleSeq(), null);
+		} catch (AcsJException e) {
+			e.printStackTrace();
+		}
+		try {
+			patternPropImpl.getDataAccess().set(initValPattern, null);
 		} catch (AcsJException e) {
 			e.printStackTrace();
 		}

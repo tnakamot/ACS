@@ -52,7 +52,7 @@ public class MCtestComponentImpl extends CharacteristicComponentImpl implements
 			doubleProp = ROdoubleHelper.narrow(this.registerProperty(doublePropImpl, currentTie));
 		}
 		{
-			DataAccess<Long> longROPropDA = new MCTestDataAccess<Long>(15L, 134608945243381570L);
+			DataAccess<Integer> longROPropDA = new MCTestDataAccess<Integer>(15, 134608945243381570L);
 			RWlongImpl currentImpl =  new RWlongImpl("longProp", this, longROPropDA);
 			RWlongPOATie currentTie = new RWlongPOATie(currentImpl);
 			longProp = RWlongHelper.narrow(this.registerProperty(currentImpl, currentTie));

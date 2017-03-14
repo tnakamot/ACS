@@ -144,14 +144,14 @@ public class MCtestPropertiesComponentImpl extends CharacteristicComponentImpl
 	private DataAccess<Float> m_floatRODevIO = new MCtestDevIONoIncremental<Float>(m_time2, m_floatROVal);
 	
 	private ROlong m_longROProp_p;
-	private long m_longROVal = 0;
+	private int m_longROVal = 0;
 	private long m_time3 = 134608945243381570L;
-	private DataAccess<Long> m_longRODevIO = new MCtestDevIONoIncremental<Long>(m_time3, m_longROVal);
+	private DataAccess<Integer> m_longRODevIO = new MCtestDevIONoIncremental<Integer>(m_time3, m_longROVal);
 	
 	private ROuLong m_uLongROProp_p;
-	private long m_uLongROVal = 0;
+	private int m_uLongROVal = 0;
 	private long m_time4 = 134608945243381570L;
-	private DataAccess<Long> m_uLongRODevIO = new MCtestDevIONoIncremental<Long>(m_time4, m_uLongROVal);
+	private DataAccess<Integer> m_uLongRODevIO = new MCtestDevIONoIncremental<Integer>(m_time4, m_uLongROVal);
 	
 	private ROpattern m_patternROProp_p;
 	private long m_patternROVal = 0;
@@ -189,14 +189,14 @@ public class MCtestPropertiesComponentImpl extends CharacteristicComponentImpl
 	private DataAccess<float[]> m_floatSeqRODevIO = new MCtestDevIONoIncremental<float[]>(m_time11, m_floatSeqROVal);
 	
 	private ROlongSeq m_longSeqROProp_p;
-	private long[] m_longSeqROVal = new long[] {0, 0};
+	private int[] m_longSeqROVal = new int[] {0, 0};
 	private long m_time12 = 134608945243381570L;
-	private DataAccess<long[]> m_longSeqRODevIO = new MCtestDevIONoIncremental<>(m_time12, m_longSeqROVal);
+	private DataAccess<int[]> m_longSeqRODevIO = new MCtestDevIONoIncremental<int[]>(m_time12, m_longSeqROVal);
 	
 	private ROuLongSeq m_uLongSeqROProp_p;
-	private long[] m_uLongSeqROVal = new long[] {0, 0};
+	private int[] m_uLongSeqROVal = new int[] {0, 0};
 	private long m_time13 = 134608945243381570L;
-	private DataAccess<long[]> m_ulongSeqRODevIO = new MCtestDevIONoIncremental<long[]>(m_time13, m_uLongSeqROVal);
+	private DataAccess<int[]> m_ulongSeqRODevIO = new MCtestDevIONoIncremental<int[]>(m_time13, m_uLongSeqROVal);
 	
 	private RObooleanSeq m_booleanSeqROProp_p;
 	private boolean[] m_booleanSeqROVal = new boolean[]{false, false};

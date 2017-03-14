@@ -58,15 +58,15 @@ public class MCtestComponentImpl extends CharacteristicComponentImpl implements
 			longProp = RWlongHelper.narrow(this.registerProperty(currentImpl, currentTie));
 		}
 		{
-			DataAccess<longSeqHolder> longSeqROPropDA = new MCTestDataAccessSeq<longSeqHolder>(
-					new longSeqHolder(new int[25]), 134608945243381570L);
+			int[] int_array = new int[25];
+			DataAccess<int[]> longSeqROPropDA = new MCTestDataAccessSeq<int[]>(int_array, 134608945243381570L);
 			RWlongSeqImpl currentImpl =  new RWlongSeqImpl("longSeqProp", this, longSeqROPropDA);
 			RWlongSeqPOATie currentTie = new RWlongSeqPOATie(currentImpl);
 			longSeqProp = RWlongSeqHelper.narrow(this.registerProperty(currentImpl, currentTie));
 		}
 		{
-			DataAccess<doubleSeqHolder> doubleSeqROPropDA = new MCTestDataAccessSeq<doubleSeqHolder>(
-					new doubleSeqHolder(new double[25]), 134608945243381570L);
+			double[] double_array = new double[25];
+			DataAccess<double[]> doubleSeqROPropDA = new MCTestDataAccessSeq<double[]>(double_array, 134608945243381570L);
 			doubleSeqPropImpl =  new ROdoubleSeqImpl("doubleSeqProp", this, doubleSeqROPropDA);
 			ROdoubleSeqPOATie currentTie = new ROdoubleSeqPOATie(doubleSeqPropImpl);
 			doubleSeqProp = ROdoubleSeqHelper.narrow(this.registerProperty(doubleSeqPropImpl, currentTie));

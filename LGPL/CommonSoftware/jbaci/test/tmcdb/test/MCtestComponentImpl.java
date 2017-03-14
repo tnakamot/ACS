@@ -44,8 +44,16 @@ public class MCtestComponentImpl extends CharacteristicComponentImpl implements
 	private static double   initValDouble  =  -2.0;
 	private static int      initValLong    =    15;
 	private static long     initValPattern = 0x23L;
-	private static int[]    initValLongSeq()   { return new int[25];    }
-	private static double[] initValDoubleSeq() { return new double[25]; }
+	private static int[]    initValLongSeq()   {
+		int[] a = new int[25];		
+		for (int i = 0; i < a.length; i++) { a[i] = -2; }
+		return new int[25];
+	}
+	private static double[] initValDoubleSeq() {
+		double[] a = new double[25];
+		for (int i = 0; i < a.length; i++) { a[i] = -2.0; }
+		return a;
+	}
 	
 	@Override
 	public void initialize(ContainerServices containerServices)

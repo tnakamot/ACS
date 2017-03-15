@@ -23,7 +23,6 @@ package alma.ACS.impl;
 
 import alma.ACS.TypelessPropertyOperations;
 import alma.ACS.jbaci.PropertyInitializationFailed;
-import alma.acs.logging.AcsLogger;
 
 /**
  * Implementation of <code>alma.ACS.TypelessProperty</code>.
@@ -114,8 +113,7 @@ public class TypelessPropertyImpl
 	 * @see alma.ACS.TypelessPropertyOperations#publish_now()
 	 */
 	public void publish_now() {
-		AcsLogger logger=parentComponent.getComponentContainerServices().getLogger();
-		logger.warning("IDL method publish_now not yet implemented");
+		getLogger().warning("IDL method publish_now not yet implemented");
 	}
 
 	/**

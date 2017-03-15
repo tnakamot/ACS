@@ -21,6 +21,8 @@
 
 package alma.ACS.impl;
 
+import java.util.logging.Logger;
+
 import org.omg.CORBA.Any;
 import org.omg.CosPropertyService.PropertySet;
 
@@ -31,12 +33,14 @@ import alma.ACS.Property;
 import alma.ACS.PropertyDesc;
 import alma.ACS.PropertyOperations;
 import alma.ACS.jbaci.PropertyInitializationFailed;
+import alma.acs.container.ContainerServices;
 import alma.JavaContainerError.wrappers.AcsJContainerServicesEx;
 
 /**
  * Implementation of <code>alma.ACS.Property</code>.
  * @author <a href="mailto:matej.sekoranjaATcosylab.com">Matej Sekoranja</a>
  * @author <a href="mailto:cmenayATcsrg.inf.utfsm.cl">Camilo Menay</a>
+ * @author <a href="mailto:takashi.nakamotoATnao.ac.jp">Takashi Nakamoto</a>
  * @version $id$
  */
 public class PropertyImpl implements PropertyOperations, PropertyReferenceHolder, Destroyable, PropertyIF {
@@ -60,7 +64,7 @@ public class PropertyImpl implements PropertyOperations, PropertyReferenceHolder
 	 * Property descriptor (lazy initialization).
 	 */
 	private PropertyDesc propertyDesc;
-
+	
 	/**
 	 * Constructor.
 	 * @param name				property name, non-<code>null</code>.
@@ -198,4 +202,23 @@ public class PropertyImpl implements PropertyOperations, PropertyReferenceHolder
 		propertyRef = ref;
 	}
 	
+	/**
+	 * Gets a <code>Logger</code> object that this BACI property should use.
+	 * The <code>Logger</code> will be set up with a namespace specific to the
+	 * component that this BACI property belongs to.
+	 */
+	protected Logger getLogger() {
+		if (parentComponent != null) {
+			ContainerServices cs = parentComponent.getComponentContainerServices();
+			if (cs != null) {
+				Logger logger = cs.getLogger();
+				if (logger != null) {
+					return logger;
+				}
+			}
+		}
+
+		// Fallback logger.
+		return Logger.getLogger("alma.ACS.jbaci");
+	}
 }

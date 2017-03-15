@@ -21,6 +21,8 @@
 
 package alma.ACS.impl;
 
+import java.util.logging.Level;
+
 import org.omg.CORBA.NO_IMPLEMENT;
 
 import alma.ACS.Alarmdouble;
@@ -257,6 +259,8 @@ public class ROdoubleImpl
 		Callback callback,
 		Completion completion,
 		CBDescOut desc) {
+		
+		getLogger().fine("ROdoubleImpl::dispatchCallback() is called.");
 		
 		// Type check
 		if (!(value instanceof Double)) {

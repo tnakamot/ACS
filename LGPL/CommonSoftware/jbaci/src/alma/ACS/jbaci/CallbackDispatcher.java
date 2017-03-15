@@ -33,25 +33,7 @@ import alma.ACSErr.Completion;
  */
 public interface CallbackDispatcher {
 	
-	/**
-	 * 'done' callback type constant.
-	 */
-	public static final int DONE_TYPE = 0;
-
-	/**
-	 * 'working' callback type constant.
-	 */
-	public static final int WORKING_TYPE = 1;
-	
-	/**
-	 * 'alarm_raised' callback type constant.
-	 */
-	public static final int ALARM_RAISED_TYPE = 2;
-	
-	/**
-	 * 'alarm_cleared' callback type constant.
-	 */
-	public static final int ALARM_CLEARED_TYPE = 3;
+	public enum CallbackType {DONE_TYPE, WORKING_TYPE, ALARM_RAISED_TYPE, ALARM_CLEARED_TYPE };
 	
 	/**
 	 * Dispatches a callback.
@@ -62,7 +44,7 @@ public interface CallbackDispatcher {
 	 * @param desc		callback out-descriptor.
 	 * @return	<code>true</code> if callback was successfully delivered, <code>false</code> on failure. 
 	 */
-	public boolean dispatchCallback(int type, Object value,
+	public boolean dispatchCallback(CallbackType type, Object value,
 							Callback callback, Completion completion, CBDescOut desc);
 
 }

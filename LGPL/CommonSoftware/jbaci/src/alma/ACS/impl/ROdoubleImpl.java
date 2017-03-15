@@ -254,7 +254,7 @@ public class ROdoubleImpl
 	 * @see alma.ACS.jbaci.CallbackDispatcher#dispatchCallback(int, java.lang.Object, alma.ACSErr.Completion, alma.ACS.CBDescOut)
 	 */
 	public boolean dispatchCallback(
-		int type,
+		CallbackType type,
 		Object value,
 		Callback callback,
 		Completion completion,
@@ -269,15 +269,15 @@ public class ROdoubleImpl
 		}
 		
 		switch (type) {
-			case CallbackDispatcher.DONE_TYPE:
-			case CallbackDispatcher.WORKING_TYPE:
+			case DONE_TYPE:
+			case WORKING_TYPE:
 				if (!(callback instanceof CBdouble)) {
 					getLogger().log(Level.WARNING, "Wrong callback type " + callback.getClass().getName() + " is passed to DOdoubleImpl::dispatchCallback(). CBdouble was expected.");
 					return false;
 				}
 				break;
-			case CallbackDispatcher.ALARM_RAISED_TYPE:
-			case CallbackDispatcher.ALARM_CLEARED_TYPE:
+			case ALARM_RAISED_TYPE:
+			case ALARM_CLEARED_TYPE:
 				if (!(callback instanceof Alarmdouble)) {
 					getLogger().log(Level.WARNING, "Wrong callback type " + callback.getClass().getName() + " is passed to DOdoubleImpl::dispatchCallback(). Alarmdouble was expected.");
 					return false;
@@ -287,16 +287,21 @@ public class ROdoubleImpl
 		
 		try
 		{
-			if (type == CallbackDispatcher.DONE_TYPE)
-				((CBdouble)callback).done(((Double)value).doubleValue(), completion, desc);					
-			else if (type == CallbackDispatcher.WORKING_TYPE)
+			switch(type) {
+			case DONE_TYPE:
+				((CBdouble)callback).done(((Double)value).doubleValue(), completion, desc);
+				break;
+			case WORKING_TYPE:
 				((CBdouble)callback).working(((Double)value).doubleValue(), completion, desc);
-			else if (type == CallbackDispatcher.ALARM_RAISED_TYPE)
-				((Alarmdouble)callback).alarm_raised(((Double)value).doubleValue(), completion, desc);					
-			else if (type == CallbackDispatcher.ALARM_CLEARED_TYPE)
+				break;
+			case ALARM_RAISED_TYPE:
+				((Alarmdouble)callback).alarm_raised(((Double)value).doubleValue(), completion, desc);
+				break;
+			case ALARM_CLEARED_TYPE:
 				((Alarmdouble)callback).alarm_cleared(((Double)value).doubleValue(), completion, desc);
-			else {
-				getLogger().log(Level.WARNING, "Wrong dispatch type " + type + " is passed to DOdoubleImpl::dispatchCallback().");
+				break;
+			default:
+				getLogger().log(Level.WARNING, "Unknown dispatch type " + type + " is passed to DOdoubleImpl::dispatchCallback().");
 				return false;
 			}
 				

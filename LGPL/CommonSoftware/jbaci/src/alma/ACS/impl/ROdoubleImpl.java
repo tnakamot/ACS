@@ -264,7 +264,7 @@ public class ROdoubleImpl
 		
 		// Type check
 		if (!(value instanceof Double)) {
-			// TODO log (tell wrong value type was passed)
+			getLogger().log(Level.WARNING, "Wrong value type " + value.getClass().getName() + " was passed to DOdoubleImpl::dispatchCallback(). Double was expected.");
 			return false;
 		}
 		
@@ -272,14 +272,14 @@ public class ROdoubleImpl
 			case CallbackDispatcher.DONE_TYPE:
 			case CallbackDispatcher.WORKING_TYPE:
 				if (!(callback instanceof CBdouble)) {
-					// TODO log (tell wrong callback type was passed)
+					getLogger().log(Level.WARNING, "Wrong callback type " + callback.getClass().getName() + " is passed to DOdoubleImpl::dispatchCallback(). CBdouble was expected.");
 					return false;
 				}
 				break;
 			case CallbackDispatcher.ALARM_RAISED_TYPE:
 			case CallbackDispatcher.ALARM_CLEARED_TYPE:
 				if (!(callback instanceof Alarmdouble)) {
-					// TODO log (tell wrong value type was passed)
+					getLogger().log(Level.WARNING, "Wrong callback type " + callback.getClass().getName() + " is passed to DOdoubleImpl::dispatchCallback(). Alarmdouble was expected.");
 					return false;
 				}
 				break;
@@ -295,25 +295,16 @@ public class ROdoubleImpl
 				((Alarmdouble)callback).alarm_raised(((Double)value).doubleValue(), completion, desc);					
 			else if (type == CallbackDispatcher.ALARM_CLEARED_TYPE)
 				((Alarmdouble)callback).alarm_cleared(((Double)value).doubleValue(), completion, desc);
-			else 
-				// TODO log (tell wrong dispatch type was passed)
+			else {
+				getLogger().log(Level.WARNING, "Wrong dispatch type " + type + " is passed to DOdoubleImpl::dispatchCallback().");
 				return false;
+			}
 				
 			return true;
 		}
 		catch (Throwable th)
 		{
-			// TODO Evaluate why do we need to catch all throwable exception here.
-			//      It also catches RuntimeException, which may finally lead to
-			//      unexpected behavior. Here this method catches RuntimeException,
-			//      but it basically does nothing after that. Even the exception is
-			//      not logged anywhere. It is basically a bad practice because 
-			//      RuntimeException normally indicates a bug in the implementation, 
-			//      and nobody can be aware of the underlying bug without log. This
-			//      catch clause indicates underlying bugs that have occurred in the
-			//      past were concealed. Thus, this this method (or even the entire
-			//      implementation of this class or package) may have to be revised
-			//      throughly.
+			getLogger().log(Level.SEVERE, "Unexpected exception happened in DOdoubleImpl::dispatchCallback().", th);
 			return false;
 		}
 	}

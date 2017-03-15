@@ -48,6 +48,7 @@ import alma.acs.exceptions.AcsJException;
 /**
  * Implementation of <code>alma.ACS.ROdouble</code>.
  * @author <a href="mailto:matej.sekoranjaATcosylab.com">Matej Sekoranja</a>
+ * @author <a href="mailto:takashi.nakamotoATnao.ac.jp">Takashi Nakamoto</a>
  * @version $id$
  */
 public class ROdoubleImpl
@@ -256,19 +257,59 @@ public class ROdoubleImpl
 		Callback callback,
 		Completion completion,
 		CBDescOut desc) {
+		
+		// Type check
+		if (!(value instanceof Double)) {
+			// TODO log (tell wrong value type was passed)
+			return false;
+		}
+		
+		switch (type) {
+			case CallbackDispatcher.DONE_TYPE:
+			case CallbackDispatcher.WORKING_TYPE:
+				if (!(callback instanceof CBdouble)) {
+					// TODO log (tell wrong callback type was passed)
+					return false;
+				}
+				break;
+			case CallbackDispatcher.ALARM_RAISED_TYPE:
+			case CallbackDispatcher.ALARM_CLEARED_TYPE:
+				if (!(callback instanceof Alarmdouble)) {
+					// TODO log (tell wrong value type was passed)
+					return false;
+				}
+				break;
+		}
+		
 		try
-		{	
+		{
 			if (type == CallbackDispatcher.DONE_TYPE)
-				((CBdouble)callback).done(((Double)value).doubleValue(), completion, desc);
+				((CBdouble)callback).done(((Double)value).doubleValue(), completion, desc);					
 			else if (type == CallbackDispatcher.WORKING_TYPE)
 				((CBdouble)callback).working(((Double)value).doubleValue(), completion, desc);
+			else if (type == CallbackDispatcher.ALARM_RAISED_TYPE)
+				((Alarmdouble)callback).alarm_raised(((Double)value).doubleValue(), completion, desc);					
+			else if (type == CallbackDispatcher.ALARM_CLEARED_TYPE)
+				((Alarmdouble)callback).alarm_cleared(((Double)value).doubleValue(), completion, desc);
 			else 
+				// TODO log (tell wrong dispatch type was passed)
 				return false;
 				
 			return true;
 		}
 		catch (Throwable th)
 		{
+			// TODO Evaluate why do we need to catch all throwable exception here.
+			//      It also catches RuntimeException, which may finally lead to
+			//      unexpected behavior. Here this method catches RuntimeException,
+			//      but it basically does nothing after that. Even the exception is
+			//      not logged anywhere. It is basically a bad practice because 
+			//      RuntimeException normally indicates a bug in the implementation, 
+			//      and nobody can be aware of the underlying bug without log. This
+			//      catch clause indicates underlying bugs that have occurred in the
+			//      past were concealed. Thus, this this method (or even the entire
+			//      implementation of this class or package) may have to be revised
+			//      throughly.
 			return false;
 		}
 	}

@@ -28,6 +28,7 @@ import alma.ACSErr.Completion;
 /**
  * Interface defining generic method to dispatch a callback.
  * @author <a href="mailto:matej.sekoranjaATcosylab.com">Matej Sekoranja</a>
+ * @author <a href="mailto:takashi.nakamotoATnao.ac.jp">Takashi Nakamoto</a>
  * @version $id$
  */
 public interface CallbackDispatcher {
@@ -41,6 +42,16 @@ public interface CallbackDispatcher {
 	 * 'working' callback type constant.
 	 */
 	public static final int WORKING_TYPE = 1;
+	
+	/**
+	 * 'alarm_raised' callback type constant.
+	 */
+	public static final int ALARM_RAISED_TYPE = 2;
+	
+	/**
+	 * 'alarm_cleared' callback type constant.
+	 */
+	public static final int ALARM_CLEARED_TYPE = 3;
 	
 	/**
 	 * Dispatches a callback.

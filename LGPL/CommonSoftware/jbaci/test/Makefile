@@ -99,7 +99,7 @@ MCmockController_LIBS = baci MonitorArchiverIFStubs CollectorListStatusStubs acs
 # Scripts (public and local)
 # ----------------------------
 SCRIPTS         = 
-SCRIPTS_L       = dispatchActionTest PropertySeqTest PropertyDoubleTest PropertyPrimTest BuildingTest jbaciTATPrologue EnumTest
+SCRIPTS_L       = dispatchActionTest PropertySeqTest PropertyDoubleTest PropertyPrimTest BuildingTest jbaciTATPrologue EnumTest AlarmTest
 
 #
 # TCL scripts (public and local)
@@ -148,7 +148,7 @@ PANELS_L =
 #
 # IDL Files and flags
 #
-IDL_FILES = testSimpleMasterComponent testSeqTestingComponent testPrimTestingComponent testjBaciEnumProp MCtestComponent
+IDL_FILES = testSimpleMasterComponent testSeqTestingComponent testPrimTestingComponent testjBaciEnumProp MCtestComponent AlarmTestServer
 IDL_TAO_FLAGS =
 USER_IDL = 
 testSimpleMasterComponentStubs_LIBS = baciStubs
@@ -159,7 +159,7 @@ testjBaciEnumPropStubs_LIBS = baciStubs enumpropStdStubs
 # Jarfiles and their directories
 #
 JARFILES = jbaciTest
-jbaciTest_DIRS = alma tmcdb
+jbaciTest_DIRS = alma tmcdb jbaci
 jbaciTest_EXTRAS =
 USER_JFLAGS=
 

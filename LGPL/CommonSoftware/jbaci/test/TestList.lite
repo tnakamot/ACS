@@ -53,5 +53,6 @@ PROLOGUE jbaciTATPrologue
 19 "MCtestAlarmsComponent"  "acsutilTATTestRunner  mcTestAlarmsComponent MONITOR_COLLECTOR_TEST"
 20 "registerNonCollocatedDevice" "acsutilTATTestRunner mcTestRegisterNonCollocatedDevice MONITOR_COLLECTOR_TEST"
 21 "MCtestCyclicBuffer"  "acsutilTATTestRunner  mcTestCyclicBuffer MONITOR_COLLECTOR_TEST"
+22 AlarmTest "acsutilTATTestRunner AlarmTest"
 #
 EPILOGUE acsutilTATEpilogue 

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+SCRIPTDIR=$(cd $(dirname $0) && pwd)
+
+export INTROOT=/alma/ACS-FEB2017/ACSSW/intlist/JBACI-TEST
+export ACSROOT=/alma/ACS-FEB2017/ACSSW
+
+source $ACSROOT/config/.acs/.bash_profile.acs
+
+DIR=$1
+cd $SCRIPTDIR/$DIR
+
+shift 1
+
+$@

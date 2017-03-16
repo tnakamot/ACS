@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="jBACI">
+	<target name="compile">
+		<exec dir="src" executable="${basedir}/jbaciEnv">
+			<arg value="src" />
+			<arg value="make" />
+			<arg value="clean" />
+			<arg value="all" />
+		</exec>
+	</target>
+	<target name="test">
+		<exec dir="test" executable="${basedir}/jbaciEnv">
+			<arg value="test" />
+			<arg value="make" />
+			<arg value="clean" />
+			<arg value="test" />
+		</exec>
+	</target>
+</project>

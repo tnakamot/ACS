@@ -247,6 +247,44 @@ public class BACIDispatchAction implements PrioritizedRunnable {
 	}
 
 	/**
+	 * Added alarm_raised callback request to dispatch queue.
+	 * @param completion	completion.
+	 */
+	public void dispatchAlarmRaisedRequest(Completion completion)
+	{
+		dispatchRequest(CallbackDispatcher.CallbackType.ALARM_RAISED_TYPE, completion, null);
+	}
+
+	/**
+	 * Added alarm_raised callback request to dispatch queue.
+	 * @param completion	completion.
+	 * @param value			value.
+	 */
+	public void dispatchAlarmRaisedRequest(Completion completion, Object value)
+	{
+		dispatchRequest(CallbackDispatcher.CallbackType.ALARM_RAISED_TYPE, completion, value);
+	}
+	
+	/**
+	 * Added alarm_cleared callback request to dispatch queue.
+	 * @param completion	completion.
+	 */
+	public void dispatchAlarmClearedRequest(Completion completion)
+	{
+		dispatchRequest(CallbackDispatcher.CallbackType.ALARM_CLEARED_TYPE, completion, null);
+	}
+
+	/**
+	 * Added alarm_cleared callback request to dispatch queue.
+	 * @param completion	completion.
+	 * @param value			value.
+	 */
+	public void dispatchAlarmClearedRequest(Completion completion, Object value)
+	{
+		dispatchRequest(CallbackDispatcher.CallbackType.ALARM_CLEARED_TYPE, completion, value);
+	}
+
+	/**
 	 * Added request to dispatch queue.
 	 */
 	public void dispatchRequest(CallbackDispatcher.CallbackType type, Completion completion, Object value)

@@ -120,7 +120,6 @@ public class PropertyAlarmTest extends TestCase {
 		destroyCORBA();
 	}
 
-	/*
 	public void testDouble() throws Throwable {
 		CompletionHolder c = new CompletionHolder();
 		double d = 0.0;
@@ -131,8 +130,8 @@ public class PropertyAlarmTest extends TestCase {
 		}
 		assertEquals(d, -1.0);
 	}
-	*/
-	
+
+	/*
 	public void testAlarmRODouble() throws Throwable {
 		ROdouble prop = testServer.doubleProp();
 		
@@ -205,6 +204,7 @@ public class PropertyAlarmTest extends TestCase {
 		assertTrue(counter.getClearedCount() >= 2);
 		assertTrue(counter.getRaisedCount()  >= 2);
 	}
+	*/
 
 	public static TestSuite suite() {
 		return new TestSuite(PropertyAlarmTest.class);

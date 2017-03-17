@@ -76,7 +76,7 @@ INCLUDES        =
 # Libraries (public and local)
 # ----------------------------
 LIBRARIES       =
-LIBRARIES_L     = MCtestComponent MCtestPropertiesComponent MCtestAlarmsComponent MCmockBlobber MCmockController
+LIBRARIES_L     = MCtestComponent MCtestPropertiesComponent MCtestAlarmsComponent MCmockBlobber MCmockController AlarmTestServer
 
 #
 # <brief description of lllll library>
@@ -94,6 +94,9 @@ MCmockBlobber_LIBS = baci MonitorArchiverIFStubs CollectorListStatusStubs acscom
 
 MCmockController_OBJECTS = MCmockControllerImpl
 MCmockController_LIBS = baci MonitorArchiverIFStubs CollectorListStatusStubs acscomponent MonitorErr
+
+AlarmTestServer_OBJECTS = AlarmTestServerImpl
+AlarmTestServer_LIBS= AlarmTestServerStubs baci acscomponent
 
 #
 # Scripts (public and local)

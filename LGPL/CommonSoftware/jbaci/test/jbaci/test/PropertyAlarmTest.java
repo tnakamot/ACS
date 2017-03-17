@@ -10,6 +10,7 @@ import org.omg.PortableServer.POAManager;
 
 import si.ijs.maci.Manager;
 import si.ijs.maci.ManagerHelper;
+import alma.ACSErr.CompletionHolder;
 import alma.acs.util.ACSPorts;
 import alma.jbaci.AlarmTestServer;
 import alma.jbaci.AlarmTestServerHelper;
@@ -23,22 +24,27 @@ public class PropertyAlarmTest extends TestCase {
 	/**
 	 * Object Request Broker (ORB) object.
 	 */
-	private ORB orb = null;
+	private ORB orb;
 
 	/**
 	 * Root Portable Object Adapter (POA) object.
 	 */
-	private POA rootPOA = null;
+	private POA rootPOA;
 
 	/**
 	 * Property to be tested.
 	 */
-	private Manager manager = null;
-
+	private Manager manager;
+	
 	/**
 	 * Name of AlarmTestServer component to be tested.
 	 */
 	private static final String COMPONENT_NAME = "ALARM_TEST_SRV";
+	
+	/**
+	 * AlarmTestServer instance.
+	 */
+	private AlarmTestServer testServer;
 
 	/**
 	 * Initialize CORBA.
@@ -87,7 +93,7 @@ public class PropertyAlarmTest extends TestCase {
 		org.omg.CORBA.Object obj = manager.get_component(0x05000000,
 				COMPONENT_NAME, true);
 
-		AlarmTestServer ats = AlarmTestServerHelper.narrow(obj);
+		testServer = AlarmTestServerHelper.narrow(obj);
 	}
 
 	/**
@@ -98,8 +104,10 @@ public class PropertyAlarmTest extends TestCase {
 		destroyCORBA();
 	}
 
-	public void testA() throws Throwable {
-		assertEquals("a", "a");
+	public void testDouble() throws Throwable {
+		CompletionHolder c = new CompletionHolder();
+		double d = testServer.doubleProp().get_sync(c);
+		assertEquals(d, -1.0);
 	}
 
 	public static TestSuite suite() {

@@ -6,7 +6,7 @@
   <doubleProp default_timer_trig = "1.0"
               min_timer_trig     = "0.001"
               min_delta_trig     = "0.01526"
-              default_value      = "0.0"
+              default_value      = "-2.0"
               graph_min          = "0.0"
               graph_max          = "1000.0"
               min_step           = "0.01526"

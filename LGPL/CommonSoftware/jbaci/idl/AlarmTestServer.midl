@@ -3,7 +3,6 @@
 
 #include <acscommon.idl>
 #include <baci.idl>
-#include <enumpropMACRO.idl>
 
 #pragma prefix "alma"
 

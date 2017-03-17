@@ -95,12 +95,12 @@ public class RObooleanSeqImpl extends CommonComparablePropertyImpl implements RO
 	}
 
 	@Override
-	public boolean dispatchCallback(int type, Object value, Callback callback, Completion completion, CBDescOut desc) {
+	public boolean dispatchCallback(CallbackDispatcher.CallbackType type, Object value, Callback callback, Completion completion, CBDescOut desc) {
 		try
 		{	
-			if (type == CallbackDispatcher.DONE_TYPE)
+			if (type == CallbackDispatcher.CallbackType.DONE_TYPE)
 				((CBbooleanSeq)callback).done(((boolean[])value), completion, desc);
-			else if (type == CallbackDispatcher.WORKING_TYPE)
+			else if (type == CallbackDispatcher.CallbackType.WORKING_TYPE)
 				((CBbooleanSeq)callback).working(((boolean[])value), completion, desc);
 			else 
 				return false;

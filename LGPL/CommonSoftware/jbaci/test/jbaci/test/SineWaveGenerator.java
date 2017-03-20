@@ -17,6 +17,8 @@ import alma.acs.exceptions.AcsJException;
 /**
  * This is a hardware simulator which generates sine wave for testing BACI properties.
  * 
+ * TODO: use the thread pool managed by CharacteristicComponentImpl.
+ * 
  * @author <a href="mailto:takashi.nakamotoATnao.ac.jp">Takashi Nakamoto</a>
  * @version $id$
  */

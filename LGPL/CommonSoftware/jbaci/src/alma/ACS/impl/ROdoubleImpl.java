@@ -24,6 +24,7 @@ package alma.ACS.impl;
 import java.util.logging.Level;
 
 import org.omg.CORBA.NO_IMPLEMENT;
+import org.omg.CORBA.NO_RESOURCES;
 
 import alma.ACS.Alarmdouble;
 import alma.ACS.CBDescIn;
@@ -36,6 +37,8 @@ import alma.ACS.MonitordoublePOATie;
 import alma.ACS.NoSuchCharacteristic;
 import alma.ACS.ROdoubleOperations;
 import alma.ACS.Subscription;
+import alma.ACS.SubscriptionHelper;
+import alma.ACS.SubscriptionPOATie;
 import alma.ACS.TimeSeqHolder;
 import alma.ACS.doubleSeqHolder;
 import alma.ACS.jbaci.CallbackDispatcher;
@@ -123,11 +126,21 @@ public class ROdoubleImpl
 	 * @see alma.ACS.ROdoubleOperations#new_subscription_Alarm(alma.ACS.Alarmdouble, alma.ACS.CBDescIn)
 	 */
 	public Subscription new_subscription_Alarm(
-		Alarmdouble arg0,
-		CBDescIn arg1) {
-		// TODO NO_IMPLEMENT
+		Alarmdouble callback,
+		CBDescIn descIn) {
 		
-		throw new NO_IMPLEMENT();
+		AlarmdoubleSubscriptionImpl subscriptionImpl = new AlarmdoubleSubscriptionImpl(this, callback, descIn);
+		SubscriptionPOATie subscriptionTie = new SubscriptionPOATie(subscriptionImpl);
+		Subscription subscription;
+		
+		try { 
+			subscription = SubscriptionHelper.narrow(parentComponent.getComponentContainerServices().activateOffShoot(subscriptionTie));
+		} catch (Throwable th) {
+			getLogger().log(Level.WARNING, "jBaci::ROdoubleImpl::new_subscription_Alarm - Cannot activate Off Shoot.");
+			throw new NO_RESOURCES(th.getMessage());
+		}		
+	
+		return SubscriptionHelper.narrow(subscription);
 	}
 
 	/**
@@ -148,7 +161,7 @@ public class ROdoubleImpl
 		// create monitor and its servant
 		MonitordoubleImpl monitorImpl = new MonitordoubleImpl(this, callback, descIn, startTime);
 		MonitordoublePOATie monitorTie = new MonitordoublePOATie(monitorImpl);
-
+		
 		// register and activate		
 		return MonitordoubleHelper.narrow(this.registerMonitor(monitorImpl, monitorTie));
 	

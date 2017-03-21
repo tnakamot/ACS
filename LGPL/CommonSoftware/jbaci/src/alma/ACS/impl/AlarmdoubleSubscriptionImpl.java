@@ -1,6 +1,8 @@
 package alma.ACS.impl;
 
+import alma.ACS.Alarmdouble;
 import alma.ACS.CBDescIn;
+import alma.ACS.CBDescOut;
 import alma.ACS.Callback;
 import alma.ACS.SubscriptionOperations;
 import alma.ACS.jbaci.BACIDispatchAction;
@@ -47,7 +49,7 @@ public class AlarmdoubleSubscriptionImpl implements SubscriptionOperations, Disp
 	 * TODO make inline document
 	 * @param property
 	 */
-	public AlarmdoubleSubscriptionImpl(ROdoubleImpl property, Callback callback, CBDescIn descIn) {
+	public AlarmdoubleSubscriptionImpl(ROdoubleImpl property, Alarmdouble callback, CBDescIn descIn) {
 		if (property == null)
 			throw new NullPointerException("property == null");
 		
@@ -57,9 +59,8 @@ public class AlarmdoubleSubscriptionImpl implements SubscriptionOperations, Disp
 		if (descIn == null)
 			throw new NullPointerException("descIn == null");
 		
-		
 		this.property = property;
-		this.isSuspended = false;
+		this.isSuspended = true;
 		this.isDestroyed = false;
 		
 		// create dispatch action
@@ -108,17 +109,29 @@ public class AlarmdoubleSubscriptionImpl implements SubscriptionOperations, Disp
 		if (alarmStatus != AlarmStatus.CLEARED &&
 		    current_value >= property.alarm_low_off() &&
 		    current_value <= property.alarm_high_off()) {
-			Completion completion = new Completion(UTCUtility.utcJavaToOmg(System.currentTimeMillis()), alma.ACSErr.ACSErrTypeAlarm.value, alma.ACSErrTypeAlarm.ACSErrAlarmCleared.value, null);
+			Completion completion
+			  = new Completion(UTCUtility.utcJavaToOmg(System.currentTimeMillis()),
+					alma.ACSErr.ACSErrTypeAlarm.value,
+					alma.ACSErrTypeAlarm.ACSErrAlarmCleared.value,
+					new alma.ACSErr.ErrorTrace[0]);
 			dispatchAction.dispatchAlarmClearedRequest(completion, current_value);
 			alarmStatus = AlarmStatus.CLEARED;
 		} else if (alarmStatus != AlarmStatus.HIGH &&
 		    current_value >= property.alarm_high_on()) {
-			Completion completion = new Completion(UTCUtility.utcJavaToOmg(System.currentTimeMillis()), alma.ACSErr.ACSErrTypeAlarm.value, alma.ACSErrTypeAlarm.ACSErrAlarmHigh.value, null);
+			Completion completion
+			  = new Completion(UTCUtility.utcJavaToOmg(System.currentTimeMillis()),
+					alma.ACSErr.ACSErrTypeAlarm.value,
+					alma.ACSErrTypeAlarm.ACSErrAlarmHigh.value,
+					new alma.ACSErr.ErrorTrace[0]);
 			dispatchAction.dispatchAlarmRaisedRequest(completion, current_value);
 			alarmStatus = AlarmStatus.HIGH;
 		} else if (alarmStatus != AlarmStatus.LOW &&
 				   current_value <= property.alarm_low_on()) {
-			Completion completion = new Completion(UTCUtility.utcJavaToOmg(System.currentTimeMillis()), alma.ACSErr.ACSErrTypeAlarm.value, alma.ACSErrTypeAlarm.ACSErrAlarmLow.value, null);
+			Completion completion
+			  = new Completion(UTCUtility.utcJavaToOmg(System.currentTimeMillis()),
+					alma.ACSErr.ACSErrTypeAlarm.value,
+					alma.ACSErrTypeAlarm.ACSErrAlarmLow.value,
+					new alma.ACSErr.ErrorTrace[0]);
 			dispatchAction.dispatchAlarmRaisedRequest(completion, current_value);
 			alarmStatus = AlarmStatus.LOW;
 		}		

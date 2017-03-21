@@ -21,15 +21,15 @@ public class MCTestDataAccessSeq<T> extends DataAccessSupport<T> implements
 	
 	@Override
 	public T get(CompletionHolder completionHolder) throws AcsJException {
-		if (value instanceof longSeqHolder) {
-			longSeqHolder tmp = (longSeqHolder) value;
-			for (int i = 0; i < tmp.value.length; i++) {
-				tmp.value[i]++;
+		if (value instanceof double[]) {
+			double[] double_array = (double[]) value;
+			for (int i = 0; i < double_array.length; i++) {
+				double_array[i]++;
 			}
-		} else if (value instanceof doubleSeqHolder) {
-			doubleSeqHolder tmp = (doubleSeqHolder) value;
-			for (int i = 0; i < tmp.value.length; i++) {
-				tmp.value[i]++;
+		} else if (value instanceof int[]) {
+			int[] int_array = (int[]) value;
+			for (int i = 0; i < int_array.length; i++) {
+				int_array[i]++;
 			}
 		}
 		timestamp += 10000000; //1 sec
@@ -38,7 +38,11 @@ public class MCTestDataAccessSeq<T> extends DataAccessSupport<T> implements
 
 	@Override
 	public boolean initializeValue() {
-		return true;
+		// tnakamot: this method now returns false so that this.value won't
+		//           be initialized by BACI properties which initializes the
+		//           value with set(...) method, and this instance keeps the
+		//           original value set in the constructor.
+		return false;
 	}
 
 	@Override

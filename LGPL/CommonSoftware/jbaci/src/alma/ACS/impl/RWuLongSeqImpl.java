@@ -186,9 +186,9 @@ public class RWuLongSeqImpl extends RWCommonComparablePropertyImpl implements RW
 		try
 		{	
 			if (type == CallbackDispatcher.CallbackType.DONE_TYPE)
-				((CBlongSeq)callback).done(((int[])value), completion, desc);
+				((CBuLongSeq)callback).done(((int[])value), completion, desc);
 			else if (type == CallbackDispatcher.CallbackType.WORKING_TYPE)
-				((CBlongSeq)callback).working(((int[])value), completion, desc);
+				((CBuLongSeq)callback).working(((int[])value), completion, desc);
 			else 
 				return false;
 				

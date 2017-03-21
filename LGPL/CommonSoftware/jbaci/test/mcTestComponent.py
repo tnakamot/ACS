@@ -39,7 +39,7 @@ mc = simpleClient.getComponent(argv[1])
 
 try:
     tc =   simpleClient.getComponent('MC_TEST_COMPONENT')
-    psns =[propertySerailNumber('doubleSeqProp', ['12124']),propertySerailNumber('doubleProp', ['3432535'])]    
+    psns =[propertySerailNumber('doubleSeqProp', ['12124']),propertySerailNumber('doubleProp', ['3432535'])]
     mc.registerNonCollocatedMonitoredDeviceWithMultipleSerial('MC_TEST_COMPONENT', psns)
     tc.reset();
     mc.startMonitoring('MC_TEST_COMPONENT')    
@@ -54,7 +54,8 @@ data = mc.getMonitorData()
 print "Number of Devices:", len(data);
 for d in data:
     print d.componentName, d.deviceSerialNumber 
-    for blob in d.monitorBlobs:
+    blobs = sorted(d.monitorBlobs, key=lambda blob: blob.propertyName)
+    for blob in blobs:
         print "\t", blob.propertyName, blob.propertySerialNumber
         i=0
         for blobData in any.from_any(blob.blobDataSeq):

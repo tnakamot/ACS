@@ -94,9 +94,9 @@ public class RWbooleanSeqImpl extends RWCommonComparablePropertyImpl implements 
 		try
 		{	
 			if (type == CallbackDispatcher.CallbackType.DONE_TYPE)
-				((CBboolean)callback).done((boolean) ((Boolean)value).booleanValue(), completion, desc);
+				((CBbooleanSeq)callback).done((boolean[])value, completion, desc);
 			else if (type == CallbackDispatcher.CallbackType.WORKING_TYPE)
-				((CBboolean)callback).working((boolean) ((Boolean)value).booleanValue(), completion, desc);
+				((CBbooleanSeq)callback).working((boolean[])value, completion, desc);
 			else 
 				return false;
 				

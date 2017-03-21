@@ -180,9 +180,8 @@ public class PropertyAlarmTest extends TestCase {
 		// immediately after the client has subscribed to the alarm.
 		//
 		// As of 17 March, 2017, it was found that C++ BACI implementation cannot pass this
-		// test, so it is commented out for now.
-		
-		// assertEquals(1, counter.getClearedCount() + counter.getRaisedCount());
+		// test.
+		assertEquals(1, counter.getClearedCount() + counter.getRaisedCount());
 		
 		sub.resume();
 		

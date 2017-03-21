@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="lib" path="lib/AlarmTestServer.jar"/>
-	<classpathentry kind="lib" path="lib/jbaci.jar"/>
 	<classpathentry kind="lib" path="lib/MCtestComponent.jar"/>
 	<classpathentry kind="lib" path="lib/MyTestComponent.jar"/>
 	<classpathentry kind="lib" path="lib/testjBaciEnumProp.jar"/>
